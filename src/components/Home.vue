@@ -41,7 +41,6 @@ const todoStorage = {
   }
 }
 const todoList = ref<todo[]>(todoStorage.fetch())
-const visibility = ref<string>('all')
 
 const filters: filters = {
   all(todos) {
@@ -54,8 +53,8 @@ const filters: filters = {
     return todos.filter((todo) => todo.completed)
   },
 }
-const remaining = computed(() => filters.active(todoList.value).length)
 
+const remaining = computed(() => filters.active(todoList.value).length)
 watch(() => todoList.value, (todos) => {
   todoStorage.save(todos)
 }, {
